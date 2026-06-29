@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" fill="none">
+  <rect width="400" height="520" fill="#F5EBDD"/>
+  <ellipse cx="200" cy="490" rx="120" ry="12" fill="#2D2A26" opacity="0.06"/>
+  <rect x="60" y="40" width="280" height="420" rx="4" fill="#1F3D2E"/>
+  <rect x="68" y="48" width="264" height="404" rx="2" fill="#F5EBDD"/>
+  <rect x="76" y="56" width="248" height="388" rx="1" stroke="#B8893A" stroke-width="2" fill="none"/>
+  <text x="200" y="160" text-anchor="middle" fill="#1F3D2E" font-family="Georgia, serif" font-size="20" font-weight="600">Guia das</text>
+  <text x="200" y="188" text-anchor="middle" fill="#1F3D2E" font-family="Georgia, serif" font-size="20" font-weight="600">Ervas Sagradas</text>
+  <line x1="130" y1="210" x2="270" y2="210" stroke="#B8893A" stroke-width="1" opacity="0.4"/>
+  <path d="M200 250C195 260 185 275 180 290M200 250C205 260 215 275 220 290M200 250V320" stroke="#1F3D2E" stroke-width="1.5" opacity="0.15" fill="none"/>
+  <circle cx="200" cy="250" r="8" fill="#B8893A" opacity="0.3"/>
+  <text x="200" y="400" text-anchor="middle" fill="#B8893A" font-family="Georgia, serif" font-size="13" font-style="italic">NossoAxé</text>
+  <rect x="110" y="280" width="180" height="2" rx="1" fill="#1F3D2E" opacity="0.08"/>
+  <rect x="110" y="300" width="150" height="2" rx="1" fill="#1F3D2E" opacity="0.06"/>
+  <rect x="110" y="320" width="165" height="2" rx="1" fill="#1F3D2E" opacity="0.06"/>
+</svg>

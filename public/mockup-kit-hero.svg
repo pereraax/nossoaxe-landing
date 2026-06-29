@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" fill="none">
+  <rect width="800" height="560" fill="#F5EBDD"/>
+  <!-- subtle texture -->
+  <rect width="800" height="560" fill="url(#tex)" opacity="0.3"/>
+  <!-- shadow -->
+  <ellipse cx="420" cy="500" rx="220" ry="20" fill="#2D2A26" opacity="0.08"/>
+  <!-- back book -->
+  <rect x="280" y="80" width="280" height="380" rx="6" fill="#1F3D2E" transform="rotate(-8 420 270)"/>
+  <!-- front book -->
+  <rect x="300" y="60" width="280" height="380" rx="4" fill="#1F3D2E"/>
+  <rect x="308" y="68" width="264" height="364" rx="2" fill="#F5EBDD"/>
+  <!-- gold border -->
+  <rect x="316" y="76" width="248" height="348" rx="1" stroke="#B8893A" stroke-width="2" fill="none"/>
+  <!-- decorative corner -->
+  <path d="M330 90 L350 90 L350 110 M450 90 L470 90 L470 110 M330 390 L350 390 L350 410 M450 390 L470 390 L470 410" stroke="#B8893A" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- title area -->
+  <rect x="340" y="140" width="200" height="3" fill="#B8893A" opacity="0.5"/>
+  <text x="440" y="180" text-anchor="middle" fill="#1F3D2E" font-family="Georgia, serif" font-size="22" font-weight="600">Kit Guia Prático</text>
+  <text x="440" y="210" text-anchor="middle" fill="#1F3D2E" font-family="Georgia, serif" font-size="18">de Ebós e Banhos</text>
+  <rect x="380" y="230" width="120" height="2" fill="#B8893A" opacity="0.4"/>
+  <!-- leaf icon -->
+  <path d="M440 280C440 280 410 300 410 330C410 350 425 365 440 370C455 365 470 350 470 330C470 300 440 280 440 280Z" fill="#1F3D2E" opacity="0.15"/>
+  <path d="M440 290V360" stroke="#B8893A" stroke-width="1" opacity="0.5"/>
+  <!-- content lines -->
+  <rect x="350" y="300" width="180" height="2" rx="1" fill="#1F3D2E" opacity="0.1"/>
+  <rect x="350" y="320" width="160" height="2" rx="1" fill="#1F3D2E" opacity="0.08"/>
+  <rect x="350" y="340" width="170" height="2" rx="1" fill="#1F3D2E" opacity="0.08"/>
+  <text x="440" y="400" text-anchor="middle" fill="#B8893A" font-family="Georgia, serif" font-size="14" font-style="italic">NossoAxé</text>
+  <!-- second booklet peek -->
+  <rect x="520" y="100" width="120" height="160" rx="3" fill="#1F3D2E" transform="rotate(12 580 180)"/>
+  <rect x="526" y="106" width="108" height="148" rx="2" fill="#F5EBDD" transform="rotate(12 580 180)"/>
+  <text x="580" y="175" text-anchor="middle" fill="#1F3D2E" font-family="Georgia, serif" font-size="10" transform="rotate(12 580 180)">Ervas</text>
+  <text x="580" y="190" text-anchor="middle" fill="#1F3D2E" font-family="Georgia, serif" font-size="10" transform="rotate(12 580 180)">Sagradas</text>
+  <!-- decorative leaves -->
+  <path d="M80 120C80 120 60 140 60 170C60 190 72 205 80 210C88 205 100 190 100 170C100 140 80 120 80 120Z" fill="#1F3D2E" opacity="0.08"/>
+  <path d="M700 400C700 400 680 420 680 450C680 470 692 485 700 490C708 485 720 470 720 450C720 420 700 400 700 400Z" fill="#1F3D2E" opacity="0.06" transform="rotate(45 700 445)"/>
+  <defs>
+    <pattern id="tex" patternUnits="userSpaceOnUse" width="4" height="4">
+      <circle cx="1" cy="1" r="0.5" fill="#2D2A26" opacity="0.03"/>
+    </pattern>
+  </defs>
+</svg>
