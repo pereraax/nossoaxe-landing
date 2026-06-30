@@ -56,9 +56,9 @@ export default function Testimonials() {
           </SectionSubtitle>
         </Reveal>
 
-        <Reveal delay={30} className="mt-8 sm:mt-10">
+        <div className="mt-8 sm:mt-10">
           <TestimonialsCarousel reviews={reviews} />
-        </Reveal>
+        </div>
 
         <Reveal delay={60}>
           <PricingCTA className="mt-8 sm:mt-10" />

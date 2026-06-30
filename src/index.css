@@ -186,6 +186,31 @@
     display: none;
   }
 
+  @keyframes testimonials-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .testimonials-marquee-track {
+    animation: testimonials-marquee 60s linear infinite;
+    will-change: transform;
+  }
+
+  .testimonials-marquee-track.is-paused {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-marquee-track {
+      animation: none;
+      transform: none;
+    }
+  }
+
   .btn-glow-loop {
     animation: btn-glow-pulse 2.8s ease-in-out infinite;
   }

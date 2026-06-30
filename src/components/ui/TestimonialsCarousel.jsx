@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AssetImage from './AssetImage'
 import TestimonialStars from './TestimonialStars'
 import { IMAGES } from '../../config/assets'
 
-const AUTO_SPEED = 0.45
-const RESUME_MS = 4000
+const PX_PER_SECOND = 28
+const PAUSE_MS = 4000
 
 function TestimonialCard({ review }) {
   return (
@@ -51,83 +51,96 @@ function TestimonialCard({ review }) {
 }
 
 export default function TestimonialsCarousel({ reviews, ariaLabel = 'Depoimentos de clientes' }) {
-  const scrollRef = useRef(null)
-  const pauseUntilRef = useRef(0)
-  const programmaticRef = useRef(false)
-  const resumeTimerRef = useRef(null)
+  const trackRef = useRef(null)
+  const pauseTimerRef = useRef(null)
+  const [duration, setDuration] = useState(60)
+  const [paused, setPaused] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const looped = [...reviews, ...reviews]
 
-  const pauseForUser = useCallback(() => {
-    pauseUntilRef.current = Date.now() + RESUME_MS
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
-    resumeTimerRef.current = setTimeout(() => {
-      pauseUntilRef.current = 0
-    }, RESUME_MS)
-  }, [])
-
-  const wrapScroll = useCallback((el) => {
-    const half = el.scrollWidth / 2
-    if (half <= 0) return
-    if (el.scrollLeft >= half - 1) el.scrollLeft -= half
-    if (el.scrollLeft <= 0) el.scrollLeft += half
-  }, [])
-
   useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-
-    const half = el.scrollWidth / 2
-    if (half > 0) el.scrollLeft = half * 0.15
-
-    let frameId = 0
-
-    const tick = () => {
-      if (Date.now() >= pauseUntilRef.current) {
-        programmaticRef.current = true
-        el.scrollLeft += AUTO_SPEED
-        wrapScroll(el)
+    const measure = () => {
+      const el = trackRef.current
+      if (!el) return
+      const half = el.scrollWidth / 2
+      if (half > 0) {
+        setDuration(Math.max(36, half / PX_PER_SECOND))
       }
-      frameId = requestAnimationFrame(tick)
     }
 
-    frameId = requestAnimationFrame(tick)
+    measure()
 
-    const onScroll = () => {
-      if (programmaticRef.current) {
-        programmaticRef.current = false
-        return
-      }
-      pauseForUser()
-      wrapScroll(el)
-    }
+    const ro = new ResizeObserver(measure)
+    if (trackRef.current) ro.observe(trackRef.current)
 
-    el.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('load', measure, { once: true })
 
     return () => {
-      cancelAnimationFrame(frameId)
-      el.removeEventListener('scroll', onScroll)
-      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+      ro.disconnect()
+      window.removeEventListener('load', measure)
     }
-  }, [pauseForUser, wrapScroll, reviews.length])
+  }, [reviews])
+
+  useEffect(() => {
+    const stepMs = Math.max(3000, (duration * 1000) / reviews.length)
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % reviews.length)
+    }, stepMs)
+
+    return () => clearInterval(timer)
+  }, [duration, reviews.length])
+
+  const pauseBriefly = () => {
+    setPaused(true)
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current)
+    pauseTimerRef.current = setTimeout(() => {
+      setPaused(false)
+    }, PAUSE_MS)
+  }
+
+  useEffect(
+    () => () => {
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current)
+    },
+    [],
+  )
 
   return (
     <div className="relative -mx-5 sm:-mx-6 lg:-mx-8">
       <div
-        ref={scrollRef}
-        className="preview-carousel-scroll cursor-grab overflow-x-auto overflow-y-visible py-2 active:cursor-grabbing sm:py-3"
+        className="testimonials-marquee-viewport overflow-hidden py-2 sm:py-3"
         aria-label={ariaLabel}
         role="region"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={pauseBriefly}
       >
-        <div className="flex w-max items-stretch gap-4 px-5 sm:gap-5 sm:px-6 lg:gap-6 lg:px-8">
+        <div
+          ref={trackRef}
+          className={`testimonials-marquee-track flex w-max items-stretch gap-4 px-5 sm:gap-5 sm:px-6 lg:gap-6 lg:px-8${paused ? ' is-paused' : ''}`}
+          style={{ animationDuration: `${duration}s` }}
+        >
           {looped.map((review, i) => (
             <TestimonialCard key={`${review.name}-${i}`} review={review} />
           ))}
         </div>
       </div>
 
-      <p className="mt-4 text-center text-xs font-medium text-green/50 sm:text-sm">
-        Deslize para ver mais depoimentos →
+      <div className="mt-4 flex items-center justify-center gap-1.5 sm:mt-5">
+        {reviews.map((review, index) => (
+          <span
+            key={review.name}
+            className={`h-1.5 rounded-full transition-all duration-500 ${
+              index === activeIndex ? 'w-6 bg-gold' : 'w-1.5 bg-gold/25'
+            }`}
+            aria-hidden
+          />
+        ))}
+      </div>
+
+      <p className="mt-3 text-center text-xs font-medium text-green/50 sm:text-sm">
+        Deslize ou toque para pausar momentaneamente →
       </p>
     </div>
   )
