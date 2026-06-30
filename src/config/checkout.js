@@ -1,4 +1,4 @@
-export const CHECKOUT_URL = 'https://pay.kiwify.com.br/SEU-LINK-AQUI'
+export const CHECKOUT_URL = 'https://pay.cakto.com.br/3b6yxr2_948900'
 
 /** Seção do card de preço / oferta na página */
 export const PRICE_SECTION_ID = '#preco'
