@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { CHECKOUT_URL } from '../../config/checkout'
+import { trackInitiateCheckout } from '../../config/metaPixel'
 
 const styles = {
   green: `
@@ -65,6 +66,7 @@ export default function Button({
     if (event.defaultPrevented || isHashLink || !isExternalLink) return
 
     event.preventDefault()
+    trackInitiateCheckout()
     openExternalUrl(href)
   }
 
