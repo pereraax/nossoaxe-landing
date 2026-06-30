@@ -1,6 +1,6 @@
 import AssetImage from '../ui/AssetImage'
 import Reveal, { RevealGroup } from '../ui/Reveal'
-import PricingCTA from '../ui/PricingCTA'
+import CheckoutCTA from '../ui/CheckoutCTA'
 import { SectionLabel, SectionTitle, SectionSubtitle } from '../ui/SectionLabel'
 import { IMAGES } from '../../config/assets'
 
@@ -69,10 +69,10 @@ export default function Benefits() {
           </SectionSubtitle>
         </Reveal>
 
-        <RevealGroup className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+        <RevealGroup className="mt-8 grid gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
           {benefits.map((item) => (
             <Reveal key={item.title} className="overflow-visible">
-              <article className="group flex h-full flex-col items-center overflow-visible px-2 text-center sm:px-3">
+              <article className="benefit-card group flex h-full flex-col items-center overflow-visible px-1 text-center sm:px-2">
                 <div className="float-icon-shell float-icon-shell--wide">
                   <span className="float-icon-glow" aria-hidden />
                   <AssetImage
@@ -91,7 +91,7 @@ export default function Benefits() {
                   {item.title}
                 </h3>
 
-                <p className="mt-3 max-w-[19rem] text-[0.9375rem] font-medium leading-[1.7] text-green-deep/88 sm:max-w-[20rem] sm:text-base">
+                <p className="mt-2.5 max-w-[19rem] text-[0.9375rem] font-medium leading-[1.65] text-green-deep/88 sm:mt-3 sm:max-w-[20rem] sm:text-base sm:leading-[1.7]">
                   {item.description}
                 </p>
               </article>
@@ -100,7 +100,7 @@ export default function Benefits() {
         </RevealGroup>
 
         <Reveal delay={60}>
-          <PricingCTA className="mt-8 sm:mt-10" />
+          <CheckoutCTA className="mt-7 sm:mt-8" fullWidth />
         </Reveal>
       </div>
     </section>

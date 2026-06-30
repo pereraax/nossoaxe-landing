@@ -1,15 +1,21 @@
 import Reveal from '../ui/Reveal'
 import AssetImage from '../ui/AssetImage'
-import Button from '../ui/Button'
-import { PRICE_SECTION_ID } from '../../config/checkout'
+import HeroPriceFocus from '../ui/HeroPriceFocus'
+import HeroTrustStrip from '../ui/HeroTrustStrip'
 import PriceCard from '../ui/PriceCard'
-import HeroTrustBar from '../ui/HeroTrustBar'
 import HeroPlant from '../ui/HeroMockupPlants'
 import { IMAGES } from '../../config/assets'
 
+const heroBadges = [
+  'Acesso imediato',
+  'PDF Digital',
+  'Consulta rápida',
+  'Garantia de 7 dias',
+]
+
 export default function Hero() {
   return (
-    <section className="relative touch-pan-y overflow-x-clip pb-12 md:pb-16 lg:pb-20">
+    <section className="relative touch-pan-y overflow-x-clip pb-8 md:pb-12 lg:pb-14">
       <div className="container-page relative pt-1 md:pt-2">
         <HeroPlant side="left" />
         <HeroPlant side="right" />
@@ -21,64 +27,57 @@ export default function Hero() {
             width={1920}
             height={1080}
             priority
-            className="block h-auto w-full max-w-[min(100%,24rem)] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
+            className="block h-auto w-full max-w-[min(100%,29rem)] sm:max-w-xl md:max-w-2xl lg:max-w-[44rem] xl:max-w-[46rem]"
           />
         </Reveal>
       </div>
 
       <div className="container-page">
         <div className="mx-auto max-w-3xl text-center md:max-w-4xl">
-          <Reveal className="mt-3 md:mt-4" delay={40}>
+          <Reveal className="mt-3 md:mt-4" delay={30}>
             <span className="inline-block rounded-full border border-gold/40 bg-gold/12 px-5 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-gold shadow-sm">
               Kit NossoAxé
             </span>
 
-            <h1 className="mt-4 font-display text-[2rem] font-bold leading-[1.1] text-green sm:text-[2.35rem] md:mt-5 md:text-5xl md:leading-[1.08] lg:text-[3.125rem]">
-              O{' '}
-              <span className="relative inline-block text-gold">
-                Kit Completo
-                <span
-                  className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gold/35"
-                  aria-hidden
-                />
-              </span>{' '}
-              <br className="hidden sm:block" />
-              <span className="sm:mt-1 sm:inline-block">
-                de Ebós, Banhos e Ervas Sagradas
-              </span>
+            <h1 className="mt-3 font-display text-[1.75rem] font-bold leading-[1.12] text-green sm:text-[2.15rem] md:mt-4 md:text-[2.65rem] md:leading-[1.1] lg:text-[2.85rem]">
+              Todo o conhecimento sobre Ebós, Banhos e Ervas Sagradas em um único Kit.
             </h1>
 
-            <p className="mx-auto mt-4 max-w-2xl font-subtitle text-xl font-medium leading-snug text-green/85 md:mt-5 md:text-2xl md:leading-snug">
-              Tudo organizado em um único material para você consultar{' '}
-              <span className="relative inline-block font-bold text-gold">
-                sempre que precisar
-                <span
-                  className="absolute -bottom-0.5 left-0 h-[2px] w-full rounded-full bg-gold/40"
-                  aria-hidden
-                />
-              </span>
-              .
+            <p className="mx-auto mt-3 max-w-2xl text-[0.9375rem] font-medium leading-relaxed text-green/85 sm:mt-4 sm:text-base md:text-lg md:leading-relaxed">
+              Receba acesso imediato a dois eBooks ilustrados com orientações organizadas
+              sobre ebós, banhos, ervas, defumações e oferendas. Um material prático para
+              consultar sempre que precisar.
             </p>
+
+            <ul className="mx-auto mt-4 flex max-w-lg flex-wrap items-center justify-center gap-2 sm:mt-5 sm:gap-2.5">
+              {heroBadges.map((badge) => (
+                <li
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-gold/25 bg-white/50 px-3 py-1.5 text-[11px] font-semibold text-green-deep sm:px-3.5 sm:text-xs"
+                >
+                  <span className="text-gold" aria-hidden>
+                    ✓
+                  </span>
+                  {badge}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={50}>
+            <HeroPriceFocus />
           </Reveal>
         </div>
       </div>
 
-      <Reveal className="mt-5 md:mt-6" delay={70}>
-        <HeroTrustBar />
+      <Reveal delay={70}>
+        <HeroTrustStrip />
       </Reveal>
 
       <div className="container-page">
-        <div className="mx-auto max-w-3xl text-center md:max-w-4xl">
-          <Reveal className="mt-6 flex justify-center md:mt-8" delay={90}>
-            <Button href={PRICE_SECTION_ID} size="xl" variant="green">
-              Acessar o kit agora
-            </Button>
-          </Reveal>
-
-          <Reveal className="mx-auto mt-10 max-w-lg md:mt-12 lg:max-w-xl" delay={110}>
-            <PriceCard id="preco" variant="hero" buttonText="Quero receber agora" />
-          </Reveal>
-        </div>
+        <Reveal className="mx-auto mt-6 max-w-lg md:mt-8 lg:max-w-xl" delay={90}>
+          <PriceCard id="preco" variant="hero" buttonText="Quero receber agora" />
+        </Reveal>
       </div>
     </section>
   )

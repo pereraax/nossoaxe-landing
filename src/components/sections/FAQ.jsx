@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import Reveal, { RevealGroup } from '../ui/Reveal'
-import PricingCTA from '../ui/PricingCTA'
+import CheckoutCTA from '../ui/CheckoutCTA'
 import { SectionLabel, SectionTitle } from '../ui/SectionLabel'
 import { IMAGES } from '../../config/assets'
 
@@ -120,7 +120,7 @@ export default function FAQ() {
         </RevealGroup>
 
         <Reveal delay={60}>
-          <PricingCTA className="mt-8 sm:mt-10" />
+          <CheckoutCTA className="mt-7 sm:mt-8" fullWidth />
         </Reveal>
       </div>
     </section>

@@ -52,6 +52,7 @@ export default function Button({
   icon = null,
   fullWidth = false,
   animated = true,
+  breathe = false,
   onClick,
   ...props
 }) {
@@ -59,7 +60,9 @@ export default function Button({
   const isHashLink = typeof href === 'string' && href.startsWith('#')
   const isExternalLink = typeof href === 'string' && /^https?:\/\//.test(href)
   const widthClass = fullWidth ? 'w-full' : 'mx-auto w-auto max-w-[min(100%,17.5rem)] sm:max-w-xs md:max-w-sm'
-  const glowClass = animated && isPrimary ? 'btn-glow-loop' : ''
+  const glowClass = animated && isPrimary && !breathe ? 'btn-glow-loop' : ''
+  const breatheClass = breathe && isPrimary ? 'btn-breathe' : ''
+  const motionAnimate = animated && isPrimary && !breathe ? glowPulse : undefined
 
   const handleClick = (event) => {
     onClick?.(event)
@@ -76,13 +79,13 @@ export default function Button({
       target={isExternalLink ? '_blank' : undefined}
       rel={isExternalLink ? 'noopener noreferrer' : undefined}
       onClick={handleClick}
-      animate={animated && isPrimary ? glowPulse : undefined}
+      animate={motionAnimate}
       whileHover={{ y: animated ? -2 : -1, scale: animated && isPrimary ? 1.03 : 1.01 }}
       whileTap={{ scale: 0.98 }}
       className={`
         inline-flex items-center justify-center rounded-full font-semibold
         transition-colors duration-300
-        ${styles[variant] ?? styles.green} ${glowClass} ${sizes[size]} ${widthClass} ${className}
+        ${styles[variant] ?? styles.green} ${glowClass} ${breatheClass} ${sizes[size]} ${widthClass} ${className}
       `}
       {...props}
     >

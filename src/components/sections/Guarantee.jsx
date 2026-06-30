@@ -1,6 +1,7 @@
 import { ShieldCheck } from 'lucide-react'
 import AssetImage from '../ui/AssetImage'
 import Button from '../ui/Button'
+import CheckoutCTA from '../ui/CheckoutCTA'
 import Reveal from '../ui/Reveal'
 import { IMAGES } from '../../config/assets'
 import { PRICE_SECTION_ID } from '../../config/checkout'
@@ -102,6 +103,10 @@ export default function Guarantee() {
               </Button>
             </div>
           </div>
+        </Reveal>
+
+        <Reveal delay={60}>
+          <CheckoutCTA className="mt-7 sm:mt-8" fullWidth />
         </Reveal>
       </div>
     </section>

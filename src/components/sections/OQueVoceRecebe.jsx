@@ -1,5 +1,5 @@
 import ProductShowcase from '../ui/ProductShowcase'
-import PricingCTA from '../ui/PricingCTA'
+import CheckoutCTA from '../ui/CheckoutCTA'
 import Reveal from '../ui/Reveal'
 import { SectionLabel, SectionTitle } from '../ui/SectionLabel'
 import { IMAGES } from '../../config/assets'
@@ -30,7 +30,7 @@ export default function OQueVoceRecebe() {
           <SectionTitle>Dois guias, um único acesso</SectionTitle>
         </Reveal>
 
-        <div className="mt-8 space-y-12 sm:mt-10 sm:space-y-14 lg:space-y-16">
+        <div className="mt-6 space-y-10 sm:mt-8 sm:space-y-12 lg:space-y-14">
           <ProductShowcase
             image={IMAGES.kit.livroPrincipal}
             alt="Guia Prático de Ebós e Banhos"
@@ -62,7 +62,7 @@ export default function OQueVoceRecebe() {
         </div>
 
         <Reveal delay={60}>
-          <PricingCTA className="mt-8 sm:mt-10" />
+          <CheckoutCTA className="mt-7 sm:mt-8" fullWidth />
         </Reveal>
       </div>
     </section>
