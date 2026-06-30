@@ -36,6 +36,11 @@ const glowPulse = {
   },
 }
 
+function openExternalUrl(url) {
+  const opened = window.open(url, '_blank', 'noopener,noreferrer')
+  if (!opened) window.location.assign(url)
+}
+
 export default function Button({
   children,
   variant = 'green',
@@ -46,18 +51,29 @@ export default function Button({
   icon = null,
   fullWidth = false,
   animated = true,
+  onClick,
   ...props
 }) {
   const isPrimary = variant === 'green' || variant === 'gold'
   const isHashLink = typeof href === 'string' && href.startsWith('#')
+  const isExternalLink = typeof href === 'string' && /^https?:\/\//.test(href)
   const widthClass = fullWidth ? 'w-full' : 'mx-auto w-auto max-w-[min(100%,17.5rem)] sm:max-w-xs md:max-w-sm'
   const glowClass = animated && isPrimary ? 'btn-glow-loop' : ''
+
+  const handleClick = (event) => {
+    onClick?.(event)
+    if (event.defaultPrevented || isHashLink || !isExternalLink) return
+
+    event.preventDefault()
+    openExternalUrl(href)
+  }
 
   return (
     <motion.a
       href={href}
-      target={isHashLink ? undefined : '_blank'}
-      rel={isHashLink ? undefined : 'noopener noreferrer'}
+      target={isExternalLink ? '_blank' : undefined}
+      rel={isExternalLink ? 'noopener noreferrer' : undefined}
+      onClick={handleClick}
       animate={animated && isPrimary ? glowPulse : undefined}
       whileHover={{ y: animated ? -2 : -1, scale: animated && isPrimary ? 1.03 : 1.01 }}
       whileTap={{ scale: 0.98 }}
