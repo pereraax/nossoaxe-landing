@@ -40,7 +40,15 @@ export default function Hero() {
             </span>
 
             <h1 className="mt-3 font-display text-[1.75rem] font-bold leading-[1.12] text-green sm:text-[2.15rem] md:mt-4 md:text-[2.65rem] md:leading-[1.1] lg:text-[2.85rem]">
-              Todo o conhecimento sobre Ebós, Banhos e Ervas Sagradas em um único Kit.
+              Todo o conhecimento sobre{' '}
+              <span className="relative inline text-gold">
+                Ebós, Banhos e Ervas Sagradas
+                <span
+                  className="absolute -bottom-0.5 left-0 h-[3px] w-full rounded-full bg-gold/35 sm:-bottom-1"
+                  aria-hidden
+                />
+              </span>{' '}
+              em um único Kit.
             </h1>
 
             <p className="mx-auto mt-3 max-w-2xl text-[0.9375rem] font-medium leading-relaxed text-green/85 sm:mt-4 sm:text-base md:text-lg md:leading-relaxed">
